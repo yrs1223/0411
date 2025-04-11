@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+
+    <style>
+      /* 選單樣式 */
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        gap: 15px;
+        z-index: 3; /* 選單在最上層 */
+      }
+
+      li {
+        display: inline;
+        position: relative;
+      }
+
+      li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      li a:hover {
+        background-color: #ffcad4;
+        color: #fff;
+      }
+
+      /* 子選單樣式 */
+      li ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        z-index: 3;
+      }
+
+      li:hover ul {
+        display: block;
+      }
+
+      li ul li {
+        display: block;
+      }
+
+      li ul li a {
+        padding: 5px 10px;
+        white-space: nowrap;
+      }
+
+      /* iframe 樣式 */
+      iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2); /* 背景透明度 0.2 */
+        z-index: 2; /* iframe 在第二層 */
+      }
+
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1; /* canvas 在最底層 */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 修改選單 -->
+    <ul>
+      <li><a href="#home" onclick="loadIframe('hide')">首頁</a></li>
+      <li><a href="#about">自我介紹</a></li>
+      <li>
+        <a href="#portfolio">作品集</a>
+        <ul>
+          <li><a href="#" onclick="loadIframe('https://hackmd.io/@cfchen/S1xdlbl0Jl')">第一周</a></li>
+          <li><a href="#" onclick="loadIframe('https://iclass.tku.edu.tw/course/250138/learning-activity/full-screen#/1864986')">第二周</a></li>
+          <li><a href="#" onclick="loadIframe('https://coolors.co/palettes/trending')">第三周</a></li>
+          <li><a href="#" onclick="loadIframe('https://example.com')">第四周</a></li>
+        </ul>
+      </li>
+      <li><a href="#quiz">測驗卷</a></li>
+      <li><a href="#tutorials">教學影片</a></li>
+    </ul>
+
+    <!-- iframe 用於顯示網頁 -->
+    <iframe id="contentFrame" src=""></iframe>
+
+    <!-- sketch.js 動畫 -->
+    <script src="sketch.js"></script>
+
+    <script>
+      // 動態加載 iframe 網頁
+      function loadIframe(url) {
+        const iframe = document.getElementById('contentFrame');
+        if (url === 'hide') {
+          iframe.classList.remove('active'); // 隱藏 iframe
+          iframe.src = ''; // 清空 iframe 的來源
+        } else {
+          iframe.src = url; // 設定 iframe 的來源網址
+          iframe.classList.add('active'); // 顯示 iframe
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+/* 選單樣式 */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 20px; /* 選單項目之間的間距 */
+  background-color: rgba(237, 246, 249, 0.2); /* 選單背景顏色，透明度 0.2 */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+li {
+  display: inline;
+}
+
+li a {
+  text-decoration: none;
+  color: black; /* 選單文字顏色 */
+  font-size: 18px; /* 選單文字大小 */
+  font-family: 'Microsoft JhengHei', sans-serif; /* 微軟正黑體 */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: color 0.3s;
+}
+
+li a:hover {
+  color: #bc4749; /* 滑鼠移動到上面時的文字顏色 */
+}
+
+/* 子選單樣式 */
+li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(237, 246, 249, 0.9); /* 子選單背景顏色 */
+  border-radius: 8px;
+}
+
+li:hover ul {
+  display: block;
+}
+
+li ul li {
+  display: block;
+  margin-bottom: 20px; /* 子選單選項之間的間距 */
+  background-color: rgba(237, 246, 249, 0.2); /* 子選單選項間空格背景透明度 0.2 */
+  border-radius: 5px;
+}
+
+li ul li:last-child {
+  margin-bottom: 0; /* 移除最後一個選項的間距 */
+}
+
+li ul li a {
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+iframe {
+  display: none; /* 預設隱藏 iframe */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2); /* 背景透明度 0.2 */
+  z-index: 2; /* iframe 在第二層 */
+}
+
+iframe.active {
+  display: block; /* 顯示 iframe 當 active 類別被添加 */
+}
